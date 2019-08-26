@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>前台首页</title>
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+	.user-box{display:block;width:90%; margin: 0 auto;color: #000;}
+</style>
+<div class="container">
+	<h2 class="text-center">
+		用户添加
+	</h2>
+	<div class="row">
+		<div class="user-box">
+			<form action="{:url('index/user/adduser')}" role="form" method="post" name="myform">
+				<div class="form-group">
+					<label class="" for="name">用户名称</label>
+					<input type="text" class="form-control" id="name" name="name" placeholder="请输入名称">
+				</div>
+				<div class="form-group">
+					<label class="" for="pass">密码</label>
+					<input type="text" class="form-control" id="pass" name="password" placeholder="请输入密码">
+				</div>
+				<div class="form-group">
+					<label class="" for="pass">再次输入密码</label>
+					<input type="text" class="form-control" id="pass" name="repassword" placeholder="请输入密码">
+				</div>
+				<div class="form-group">
+					<label class="" for="age">年龄</label>
+					<input type="text" class="form-control" id="age" name="age" placeholder="请输入年龄">
+				</div>
+				<div class="form-group">
+					<label class="" for="phon">手机号码</label>
+					<input type="text" class="form-control" id="phon" name="phone" placeholder="请输入手机号码">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">提交</button>
+					<button type="reset" class="btn btn-danger">提交</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+window.onload = function(){
+	if(document.myform.repassword.value!=document.myform.password.value){
+		alert('两次密码输入不相同');
+		document.myform.repassword.focus();
+		return false;
+	}else if(document.myform.name.value == NULL|''){
+		alert('用户名不能为空');
+		document.myform.name.focus();
+		return false;
+	}
+}
+</script>
+</body>
+</html>

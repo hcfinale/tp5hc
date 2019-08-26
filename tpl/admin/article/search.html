@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章列表</title>
+    <link rel="shortcut icon" href="__PUBLIC__/admin/favicon.ico">
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    {volist name="rows" id="vo"}
+    <div class="row">
+        <h4><a href="{:url('index/article/index',['id'=>$vo.id])}" target="_blank">{$vo.title}</a></h4>
+    </div>
+    {/volist}
+    {$rows}
+</div>
+<script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.5"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h3 class="text-center hchc">多文件上传</h3>
+        <form class="form-horizontal col-xs-6 col-xs-offset-3" role="form" action="{:url('Picture/addpic')}" enctype="multipart/form-data" method="post">
+            <div class="form-group filefather">
+                <input type="file" class="fileinput col-xs-6" name="image[]" />
+            </div>
+            <lable class="col-xs-6"><i class="btn btn-default fileadd glyphicon glyphicon-plus">添加</i></lable>
+            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-open"></i>上传</button>
+        </form>
+    </div>
+</div>
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $('.fileadd').click(function () {
+            var html = $('.fileinput:nth-child(1)').clone();
+            $('.fileinput').parent().append(html);
+        });
+    });
+</script>
+</body>
+</html>

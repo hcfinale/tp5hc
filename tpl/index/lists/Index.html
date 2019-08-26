@@ -1,0 +1,30 @@
+{include file="public/header" /}
+<div class="mui-content">
+    <div class="mui-card">
+        <ul class="mui-table-view">
+            {volist name='list' id='vo'}
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right" href="{:url('lists/lists',['id'=>$vo.id])}">
+                    <span class="mui-badge mui-badge-danger">15</span>
+                    {$vo.name}
+                </a>
+            </li>
+            {/volist}
+        </ul>
+        <!-- {$list} -->
+        {$list->render()}
+    </div>
+</div>
+{include file="public/footer" /}
+</body>
+<script src="__PUBLIC__/index/js/mui.min.js"></script>
+<script>
+    var hc_page = document.getElementsByTagName('hc-page');
+    hc_page.onclick = function(){
+        alert("123");
+    }
+    var url = "{:url('list/lists')}";
+    mui.get('http://server-name/list.php',{category:'news'},function(data){
+        },'json');
+</script>
+</html>

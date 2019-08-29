@@ -6,8 +6,7 @@ use think\Model;
 class Lists extends Model
 {
     //自定义初始化
-    protected function initialize()
-    {
+    protected function initialize(){
         parent::initialize();
     }
     //    protected $table = 'o2o_han';
@@ -24,9 +23,20 @@ class Lists extends Model
         return $res;
     }
     public function selectAll(){
-        // $res = $this->order('listorder desc')->paginate(2,false,['query'=>request()->param()]);
-        $res = $this->order('listorder desc')->paginate(2,false,['type'=>'BootstrapDetailed']);
-        $count = $this->alias('l')->join('__ARTICLE__ a','l.id = a.pid')->count();
-        return $res;
+        // 排序的时候不会全部排序因为分页问题
+//        $data = $this->allowField(true)->where('status','1')->order('id desc')->paginate(8,false,['type'=>'BootstrapDetailed']);
+        $data = $this->allowField(true)->where('status','1')->order('id desc')->select();
+        return $this->sortTree($data);
+    }
+    public function sortTree($data,$pid = 0,$level = 0){
+        static $arr = array();
+        foreach ($data as $k => $v){
+            if($v['pid']==$pid){
+                $v['level'] = $level;
+                $arr[] = $v;
+                $this->sortTree($data,$v['id'],$level+1);
+            }
+        }
+        return $arr;
     }
 }

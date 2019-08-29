@@ -4,12 +4,11 @@ namespace app\index\controller;
 // use FontLib\Table\Type\name;
 use think\Db;
 use think\Request;
-class Lists extends Common
-{
-    private  $obj;
+use app\index\model\Lists as ListModel;
+class Lists extends Common{
     public function _initialize(){
         parent::_initialize();
-        $this->obj = model("Lists");
+        $this->obj = new ListModel();
     }
     public function index(){
         $res =  $this->obj->selectAll();
@@ -23,9 +22,6 @@ class Lists extends Common
         $res = model('article')->where('pid',$id)->paginate(15,false,[
             'type'=>'BootstrapDetailed'
         ]);
-        // $res = Db::name('article')->where('pid',$id)->paginate(15,false,[
-        //     'type'=>'BootstrapDetailed'
-        // ]);
         $ListName = "列表页";
         return $this->fetch('list',[
             'list' => $res,

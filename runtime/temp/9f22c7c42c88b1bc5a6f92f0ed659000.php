@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:28:"./tpl\index\index\index.html";i:1566984484;s:41:"E:\www\tp5hc\tpl\index\public\header.html";i:1566984066;s:41:"E:\www\tp5hc\tpl\index\public\footer.html";i:1566984358;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:28:"./tpl\index\lists\index.html";i:1566984567;s:41:"E:\www\tp5hc\tpl\index\public\header.html";i:1566984066;s:41:"E:\www\tp5hc\tpl\index\public\footer.html";i:1566984358;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,25 +83,20 @@
 						<div class="mui-indicator"></div>
 					</div>
 				</div>
-<div class="row margin-xs-1">
-	<?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-	<div class="mui-card">
-		<?php if(count($vo['arc']) != '0'): ?>
-		<div class="mui-card-header"><?php echo $vo['name']; ?><span class="mui-badge mui-badge-success"><?php echo count($vo['arc']); ?></span></div>
-		<div class="mui-card-content">
-			<ul class="mui-table-view">
-				<?php if(is_array($vo['arc']) || $vo['arc'] instanceof \think\Collection || $vo['arc'] instanceof \think\Paginator): $i = 0; $__LIST__ = $vo['arc'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$arct): $mod = ($i % 2 );++$i;?>
-				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right" href="<?php echo url('article/index',['id'=>$arct['id']]); ?>"><?php echo $arct['title']; ?></a>
-				</li>
-				<?php endforeach; endif; else: echo "" ;endif; ?>
-			</ul>
-		</div>
-		<?php else: endif; ?>
-	</div>
-	<?php endforeach; endif; else: echo "" ;endif; ?>
-</div>
-<div style="margin: 3rem 0"></div>
+    <div class="mui-content">
+        <div class="mui-card">
+            <ul class="mui-table-view">
+                <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                <li class="mui-table-view-cell">
+                    <a class="mui-navigate-right" href="<?php echo url('lists/lists',['id'=>$vo['id']]); ?>">
+                        <?php echo $vo['name']; ?>
+                    </a>
+                </li>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+            </ul>
+        </div>
+    </div>
+    <div style="margin: 3rem 0"></div>
 			</div>
 		</div>
 		<!-- off-canvas backdrop -->
@@ -143,4 +138,11 @@
 	}
 </script>
 </body>
+<script src="/public/index/js/mui.min.js"></script>
+<script>
+    var hc_page = document.getElementsByTagName('hc-page');
+    hc_page.onclick = function(){
+        alert("123");
+    }
+</script>
 </html>

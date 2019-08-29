@@ -6,16 +6,21 @@ use think\auth\Auth;
 class Common extends Controller
 {
     public function _initialize(){
-        $controller = request()->controller();
-        $action = request()->action();
-        $auth = new Auth();
-        if(!session('uid') || request()->time() - session('logintime') > 2 * 60 * 60 * 100){
-            $this->error('非法访问,请重新登录','Login/index');
-        }elseif(session('uid') == '1') {
+        parent::_initialize();
+        $res = self::getSetting();
+        if ($res){
             return true;
+        }else{
+            echo '网站关闭了，请等系统管理员开启后在访问';
+            exit;
         }
-        if(!$auth->check($controller . '/' . $action, session('uid'))){
-            $this->error('你没有权限访问');
+    }
+    public function getSetting(){
+        $res = db('option')->where('name','switch')->field('id,value,status')->cache(true,'60')->find();
+        if ($res['status']=='1' && $res['value']==1){
+            return true;
+        }else {
+            return false;
         }
     }
     public function getClassName($all = false){

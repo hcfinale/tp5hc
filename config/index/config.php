@@ -32,7 +32,10 @@ return [
         'taglib_end'   => '}',
     ],
     // 默认控制器名
-    'default_controller'     => 'Login',
+    'default_controller'     => 'Index',
     // 默认操作名
     'default_action'         => 'index',
+    // 默认跳转页面对应的模板文件
+    'dispatch_success_tmpl'  => './tpl/index/public/jump.html',
+    'dispatch_error_tmpl'    =>  './tpl/index/public/jump.html',
 ];

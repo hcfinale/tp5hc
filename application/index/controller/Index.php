@@ -9,19 +9,15 @@ use app\index\model\User as UserModel;
 class Index extends Common
 {
     public function index(){
-    	// echo '<pre>';
-    	// var_dump($_SERVER);
-    	// echo '</pre>';
-        //echo input('get.id');
-        //前台模板中使用的volist适用于select查询方法，find方法不好用。
-        //$res=Db::table('think_user')->where('id',1)->find();
-        //$res=Db::table('tp5_user')->where('name','neq','admin')->order('id asc')->select();
-        $res=db('user')->where('name','neq','admin')->order('id asc')->select();
-        $this->assign("res",$res);
+        $data = [];
+        $column = db('list')->where('status',1)->select();
+        foreach ($column as $k => $val) {
+            $data[$k] = $val;
+            $data[$k]['arc'] = db('article')->where(['status'=>'1','pid'=>$val['id']])->select();
+        }
         return $this->fetch('index',[
-                'name'  => '我的名字HC',
-                'email' => 'hcfinale@qq.com',
                 'title' => '首页',
+                'data'   =>  $data,
         ]);
     }
     public function xixi(){

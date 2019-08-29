@@ -1,61 +1,24 @@
 {include file="public/header" /}
-				<div id="slider" class="mui-slider">
-					<div class="mui-slider-group mui-slider-loop">
-						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-						<div class="mui-slider-item mui-slider-item-duplicate">
-							<a href="#">
-								<img src="/tpl/index__PUBLIC__/images/banner.jpg">
-							</a>
-						</div>
-						<!-- 第一张 -->
-						<div class="mui-slider-item">
-							<a href="#">
-								<img src="/tpl/index__PUBLIC__/images/banner.jpg">
-							</a>
-						</div>
-						<!-- 第二张 -->
-						<div class="mui-slider-item">
-							<a href="#">
-								<img src="/tpl/index__PUBLIC__/images/banner.jpg">
-							</a>
-						</div>
-						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-						<div class="mui-slider-item mui-slider-item-duplicate">
-							<a href="#">
-								<img src="/tpl/index__PUBLIC__/images/banner.jpg">
-							</a>
-						</div>
-					</div>
-					<div class="mui-slider-indicator">
-						<div class="mui-indicator mui-active"></div>
-						<div class="mui-indicator"></div>
-					</div>
-				</div>
-				<div class="container margin-xs-1">
-					<div class="mui-row">
-						<div class="mui-col-sm-3 mui-col-xs-3">名字</div>
-						<div class="mui-col-sm-3 mui-col-xs-3">年龄</div>
-						<div class="mui-col-sm-3 mui-col-xs-3">性别</div>
-						<div class="mui-col-sm-3 mui-col-xs-3">头像</div>
-					</div>
-					{volist name="res" id="vo"}
-					<div class="mui-row">
-						<div class="mui-col-sm-3 mui-col-xs-3">{$vo.name}</div>
-						<div class="mui-col-sm-3 mui-col-xs-3">{$vo.sex}</div>
-						<div class="mui-col-sm-3 mui-col-xs-3">{$vo.age}</div>
-						<div class="mui-col-sm-3 mui-col-xs-3"><img src='{$vo.pic}' width="40px" /></div>
-					</div>
-					{/volist}
-					{eq name="name" value="我的名字HC"}
-						{$name}
-					{/eq}
-					<br />
-					我的email
-					{eq name="email" value="hcfinale@qq.com"}
-						{$email}
-					{/eq}
-				</div>
-
+<div class="row margin-xs-1">
+	{volist name="data" id="vo"}
+	<div class="mui-card">
+		{if condition="count($vo.arc) neq '0'"}
+		<div class="mui-card-header">{$vo.name}<span class="mui-badge mui-badge-success">{$vo.arc|count}</span></div>
+		<div class="mui-card-content">
+			<ul class="mui-table-view">
+				{volist name="$vo.arc" id="arct"}
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="{:url('article/index',['id'=>$arct.id])}">{$arct.title}</a>
+				</li>
+				{/volist}
+			</ul>
+		</div>
+		{else /}
+		{/if}
+	</div>
+	{/volist}
+</div>
+<div style="margin: 3rem 0"></div>
 {include file="public/footer" /}
 </body>
 </html>

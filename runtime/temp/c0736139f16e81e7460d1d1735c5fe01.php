@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:30:"./tpl\index\article\index.html";i:1566984956;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,28 +8,26 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <!--标准mui.css-->
-    <link rel="stylesheet" href="__PUBLIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="/public/index/css/mui.min.css">
     <!--App自定义的css-->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/index/css/app.css"/>
 </head>
 <body>
+<style type="text/css">
+    .text-center{text-align: center;}
+    .article{clear: both;overflow: hidden;margin: 0 1%;}
+    .article img{width: 80%;height: auto;}
+    .article p{font-size: 14px;text-indent: 2em;}
+</style>
 <header class="mui-bar mui-bar-nav">
     <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-    <h1 class="mui-title">{$ListName}</h1>
+    <h1 class="mui-title"><?php echo $ListName; ?></h1>
 </header>
 <div class="mui-content">
-    <div class="mui-card">
-        <ul class="mui-table-view">
-            {volist name='list' id='vo'}
-            <li class="mui-table-view-cell">
-                <a class="mui-navigate-right" href="{:url('article/index',['id'=>$vo.id])}">
-                    {$vo.title}
-                </a>
-            </li>
-            {/volist}
-        </ul>
+    <h1 class="text-center" style="font-size: 18px;margin: 1em"><?php echo $arc['title']; ?></h1>
+    <div class="article">
+        <?php echo $arc['article']; ?>
     </div>
-    {$list->render()}
 </div>
 <div style="margin: 3rem 0"></div>
 <nav class="mui-bar mui-bar-tab">
@@ -50,5 +49,5 @@
     </a>
 </nav>
 </body>
-<script src="__PUBLIC__/index/js/mui.min.js"></script>
+<script src="/public/index/js/mui.min.js"></script>
 </html>
